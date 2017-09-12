@@ -99,5 +99,5 @@ const main = merge(common, {
 module.exports = [main];
 module.exports.common = common;
 module.exports.main = main;
-module.exports.worker = worker;
+// module.exports.worker = worker;
 
