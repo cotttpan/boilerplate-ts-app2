@@ -11,9 +11,7 @@ module.exports = {
         'json'
     ],
     moduleDirectories: ['node_modules', 'src'],
-    globals: {
-        'ts-jest': {
-            useBabelrc: true
-        }
+    moduleNameMapper: {
+        '^@(.*)': '<rootDir>/src/$1'
     }
 };

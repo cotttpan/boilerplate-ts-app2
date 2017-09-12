@@ -32,7 +32,14 @@
             "jest"
         ],
         "baseUrl": ".",
-        "paths": {}
+        "paths": {
+            "*": [
+                "./src/*"
+            ],
+            "@*": [
+                "./src/*"
+            ]
+        }
     },
     "include": [
         "src/**/*.ts",
