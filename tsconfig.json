@@ -10,10 +10,6 @@
             "es2016",
             "webworker"
         ],
-        "experimentalDecorators": true,
-        "outDir": ".compiled",
-        "allowJs": true,
-        "checkJs": true,
         "strictNullChecks": true,
         "noImplicitAny": true,
         "noImplicitThis": true,
