@@ -2,12 +2,12 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const NotifierPlugin = require('webpack-notifier');
-const BabiliPlugin = require('babili-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const compact = require('lodash.compact');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const MinifyPlugin = require('babel-minify-webpack-plugin');
 
 // ------------------------------------------------
 // env
@@ -45,7 +45,7 @@ const common = {
         new webpack.DefinePlugin({
             'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
         }),
-        isProd && new BabiliPlugin()
+        isProd && new MinifyPlugin()
     ]),
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
@@ -99,5 +99,5 @@ const main = merge(common, {
 module.exports = [main];
 module.exports.common = common;
 module.exports.main = main;
-module.exports.worker = worker;
+// module.exports.worker = worker;
 
