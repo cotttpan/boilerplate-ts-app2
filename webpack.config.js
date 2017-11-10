@@ -8,9 +8,10 @@ const autoprefixer = require('autoprefixer');
 const compact = require('lodash.compact');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const MinifyPlugin = require('babel-minify-webpack-plugin');
+const pkg = require('./package.json');
 
 // ------------------------------------------------
-// env
+// CONSTANTS
 // ------------------------------------------------
 const NODE_ENV = process.env.NODE_ENV || 'development';
 const isProd = NODE_ENV === 'production';
@@ -50,8 +51,8 @@ const common = {
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
         alias: {
-            'react': 'preact-compat',
-            'react-dom': 'preact-compat'
+            // 'react': 'preact-compat',
+            // 'react-dom': 'preact-compat'
         }
     },
     devtool: isProd ? 'hidden-source-map' : 'inline-source-map'
@@ -62,6 +63,7 @@ const common = {
 // ------------------------------------------------
 const main = merge(common, {
     entry: {
+        vendor: Object.keys(pkg.dependencies),
         app: ['./src/index.ts', './src/index.css']
     },
     output: {
@@ -70,6 +72,11 @@ const main = merge(common, {
     },
     plugins: [
         // new BundleAnalyzerPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor',
+            filename: 'vendor.bundle.js',
+            chunks: ['app']
+        }),
         new HTMLWebpackPlugin({
             filename: 'index.html',
             template: './src/index.ejs',
