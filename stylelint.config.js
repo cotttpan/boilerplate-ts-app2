@@ -1,4 +1,5 @@
 module.exports = {
+    'ignoreFiles': ['./public/**/*.css'],
     'extends': 'stylelint-config-standard',
     'plugins': [
         'stylelint-order'
@@ -7,6 +8,10 @@ module.exports = {
         'indentation': 4,
         'custom-property-empty-line-before': 'never',
         'declaration-empty-line-before': 'never',
+        'at-rule-no-unknown': [
+            true,
+            { 'ignoreAtRules': ['function', 'if', 'for'] }
+        ],
         'order/order': [
             'custom-properties',
             'declarations',

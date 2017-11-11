@@ -30,12 +30,14 @@ const common = {
                 loader: 'awesome-typescript-loader?module=es2015'
             },
             {
-                test: /\.css$/,
+                test: /\.(css|scss|sass)$/,
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [
-                        `css-loader?importLoaders=1&minimize=${isProd}`,
-                        'postcss-loader'
+                        `css-loader?importLoaders=3&minimize=${isProd}`,
+                        'postcss-loader',
+                        'sass-loader',
+                        'import-glob-loader'
                     ]
                 })
             }
@@ -64,7 +66,7 @@ const common = {
 const main = merge(common, {
     entry: {
         vendor: Object.keys(pkg.dependencies),
-        app: ['./src/index.ts', './src/index.css']
+        app: ['./src/index.ts', './src/index.scss']
     },
     output: {
         path: path.join(__dirname, 'public'),
