@@ -10,8 +10,8 @@
     "@cotto/utils.ts": "^0.2.0"
   },
   "devDependencies": {
-    "@cotto/tslint-config": "^0.0.7",
-    "@types/jest": "^21.1.5",
+    "@cotto/tslint-config": "^0.0.9",
+    "@types/jest": "^21.1.6",
     "@types/node": "^8.0.51",
     "@types/sinon": "^2.3.7",
     "autoprefixer": "^7.1.6",

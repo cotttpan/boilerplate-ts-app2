@@ -2,9 +2,11 @@
 # yarn lockfile v1
 
 
-"@cotto/tslint-config@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@cotto/tslint-config/-/tslint-config-0.0.7.tgz#2faae9bb512352c7a93f200f3055704cb2e79150"
+"@cotto/tslint-config@^0.0.9":
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@cotto/tslint-config/-/tslint-config-0.0.9.tgz#a6f2ac2431e181c4a8e85f6106a18c86ba18d213"
+  dependencies:
+    "@cotto/utils.ts" "^0.2.0"
 
 "@cotto/utils.ts@^0.2.0":
   version "0.2.0"
@@ -12,9 +14,9 @@
   dependencies:
     "@types/node" "^8.0.33"
 
-"@types/jest@^21.1.5":
-  version "21.1.5"
-  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-21.1.5.tgz#3db93d069d12602ca115d3604550e15131d8eb7a"
+"@types/jest@^21.1.6":
+  version "21.1.6"
+  resolved "https://registry.yarnpkg.com/@types/jest/-/jest-21.1.6.tgz#9467945ce33261e4fdd14276576951aa130515aa"
 
 "@types/node@^8.0.33", "@types/node@^8.0.51":
   version "8.0.51"
