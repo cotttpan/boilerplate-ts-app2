@@ -52,10 +52,7 @@ const common = {
     ]),
     resolve: {
         extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-        alias: {
-            // 'react': 'preact-compat',
-            // 'react-dom': 'preact-compat'
-        },
+        alias: {},
     },
     devtool: isProd ? 'hidden-source-map' : 'inline-source-map',
 }
