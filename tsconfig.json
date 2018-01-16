@@ -1,7 +1,5 @@
 {
     "compilerOptions": {
-        "jsx": "react",
-        "jsxFactory": "h",
         "module": "commonjs",
         "moduleResolution": "node",
         "target": "es6",
@@ -10,9 +8,7 @@
             "es2016",
             "webworker"
         ],
-        "strictNullChecks": true,
-        "noImplicitAny": true,
-        "noImplicitThis": true,
+        "strict": true,
         "noFallthroughCasesInSwitch": true,
         "noImplicitReturns": true,
         "noUnusedLocals": true,
