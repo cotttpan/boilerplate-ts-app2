@@ -64,6 +64,6 @@ typings/
 .awcache
 .fusebox
 .compiled
-src/playground
+src/playground.ts
 dist
 public
