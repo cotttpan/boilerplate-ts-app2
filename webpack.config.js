@@ -6,104 +6,80 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const autoprefixer = require('autoprefixer')
 const compact = require('lodash.compact')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const MinifyPlugin = require('babel-minify-webpack-plugin')
-const pkg = require('./package.json')
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+// const rxPaths = require('rxjs/_esm5/path-mapping')
 
-// ------------------------------------------------
-// CONSTANTS
-// ------------------------------------------------
-const NODE_ENV = process.env.NODE_ENV || 'development'
-const isProd = NODE_ENV === 'production'
-const isDev = !isProd
+module.exports = env => {
+  console.log('ENV: ', env) // tslint:disable-line
 
-// ------------------------------------------------
-// common config
-// ------------------------------------------------
-const common = {
-  module: {
-    rules: [
-      {
-        test: /\.(jsx?|tsx?)$/,
-        exclude: /(\/node_modules\/|\.test\.tsx?$)/,
-        // loader: 'light-ts-loader'
-        loader: 'awesome-typescript-loader?module=es2015',
+  const NODE_ENV = process.env.NODE_ENV || 'development'
+  const ENV = env.production ? 'production' : 'development'
+  const isProd = env.production || NODE_ENV === 'production'
+
+  return {
+    context: path.resolve(__dirname, 'src'),
+    entry: {
+      app: ['./index.ts', './index.scss'],
+    },
+    output: {
+      path: path.join(__dirname, 'public'),
+      filename: '[name].bundle.js',
+    },
+    devServer: {
+      contentBase: 'public',
+      historyApiFallback: true,
+      noInfo: true,
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(jsx?|tsx?)$/,
+          exclude: /(\/node_modules\/|\.test\.tsx?$)/,
+          loader: 'awesome-typescript-loader?module=es2015',
+        },
+        {
+          test: /\.(css|scss|sass)$/,
+          loader: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: [
+              `css-loader?importLoaders=3&minimize=${isProd}`,
+              'postcss-loader',
+              'sass-loader',
+              'import-glob-loader',
+            ],
+          }),
+        },
+      ],
+    },
+    plugins: compact([
+      new NotifierPlugin({ title: 'Webpack' }),
+      new webpack.DefinePlugin({
+        'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
+      }),
+      new HTMLWebpackPlugin({
+        filename: 'index.html',
+        template: './index.ejs',
+        hash: true,
+        inject: false,
+        env: ENV,
+      }),
+      new ExtractTextPlugin({
+        filename: '[name].bundle.css',
+      }),
+      isProd && new webpack.optimize.ModuleConcatenationPlugin(),
+      isProd && new MinifyPlugin(),
+    ]),
+    resolve: {
+      extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+      alias: {
+        // ...rxPaths(),
+        react: 'preact-compat',
+        'react-dom': 'preact-compat',
+        '@': path.resolve(__dirname, 'src'),
       },
-      {
-        test: /\.(css|scss|sass)$/,
-        loader: ExtractTextPlugin.extract({
-          fallback: 'style-loader',
-          use: [
-            `css-loader?importLoaders=3&minimize=${isProd}`,
-            'postcss-loader',
-            'sass-loader',
-            'import-glob-loader',
-          ],
-        }),
-      },
-    ],
-  },
-  plugins: compact([
-    new NotifierPlugin({ title: 'Webpack' }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
-    }),
-    isProd && new MinifyPlugin(),
-  ]),
-  resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
-    alias: {},
-  },
-  devtool: isProd ? 'hidden-source-map' : 'inline-source-map',
+    },
+    devtool: isProd ? false : 'inline-source-map',
+  }
 }
-
-// ------------------------------------------------
-//  main bundle config
-// ------------------------------------------------
-const main = merge(common, {
-  entry: {
-    vendor: Object.keys(pkg.dependencies),
-    app: ['./src/index.ts', './src/index.scss'],
-  },
-  output: {
-    path: path.join(__dirname, 'public'),
-    filename: '[name].bundle.js',
-  },
-  plugins: [
-    // new BundleAnalyzerPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'vendor.bundle.js',
-      chunks: ['app'],
-    }),
-    new HTMLWebpackPlugin({
-      filename: 'index.html',
-      template: './src/index.ejs',
-      hash: true,
-      inject: false,
-      env: NODE_ENV,
-    }),
-    new ExtractTextPlugin({
-      filename: '[name].bundle.css',
-    }),
-  ],
-})
-
-// ------------------------------------------------
-//  worker bundle config
-// ------------------------------------------------
-// const worker = merge(common, {
-//     entry: { worker: './src/worker.ts' },
-//     output: {
-//         path: path.join(__dirname, 'public'),
-//         filename: '[name].bundle.js'
-//     }
-// });
-
-/* expose */
-// module.exports = [main, worker];
-module.exports = [main]
-module.exports.common = common
-module.exports.main = main
-// module.exports.worker = worker;
 

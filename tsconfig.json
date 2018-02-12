@@ -1,9 +1,12 @@
 {
   "compilerOptions": {
+    "jsx": "react",
+    "jsxFactory": "h",
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es6",
-    "lib": ["dom", "es2016", "webworker"],
+    "lib": ["dom", "es2016"],
+    "esModuleInterop": true,
     "strict": true,
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
@@ -18,8 +21,7 @@
     "types": ["node", "jest"],
     "baseUrl": ".",
     "paths": {
-      "*": ["./src/*"],
-      "@*": ["./src/*"]
+      "@/*": ["./src/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"],
