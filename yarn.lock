@@ -4517,10 +4517,6 @@ lodash.clonedeep@^4.3.2:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.clonedeep/-/lodash.clonedeep-4.5.0.tgz#e23f3f9c4f8fbdde872529c1071857a086e5ccef"
 
-lodash.compact@^3.0.1:
-  version "3.0.1"
-  resolved "https://registry.yarnpkg.com/lodash.compact/-/lodash.compact-3.0.1.tgz#540ce3837745975807471e16b4a2ba21e7256ca5"
-
 lodash.isplainobject@^4.0.6:
   version "4.0.6"
   resolved "https://registry.yarnpkg.com/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz#7c526a52d89b45c45cc690b88163be0497f550cb"

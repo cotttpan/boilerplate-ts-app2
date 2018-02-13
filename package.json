@@ -3,7 +3,9 @@
   "description": "boirplate-app",
   "version": "0.0.1",
   "author": "cotto",
-  "browserslist": ["last 2 versions"],
+  "browserslist": [
+    "last 2 versions"
+  ],
   "dependencies": {
     "@cotto/utils.ts": "^0.2.8"
   },
@@ -19,7 +21,6 @@
     "html-webpack-plugin": "^2.30.1",
     "import-glob-loader": "^1.1.0",
     "jest": "^22.2.2",
-    "lodash.compact": "^3.0.1",
     "node-sass": "^4.7.2",
     "npm-run-all": "^4.1.2",
     "postcss-loader": "^2.1.0",
@@ -34,8 +35,6 @@
     "stylelint-order": "^0.8.0",
     "ts-jest": "^22.0.4",
     "tslint": "^5.9.1",
-    "tslint-eslint-rules": "^4.1.1",
-    "tslint-react": "^3.4.0",
     "typescript": "^2.7.1",
     "webpack": "^3.11.0",
     "webpack-bundle-analyzer": "^2.10.0",
