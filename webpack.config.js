@@ -17,7 +17,10 @@ module.exports = env => {
   const ENV = env.production ? 'production' : 'development'
   const isProd = env.production || NODE_ENV === 'production'
 
-  return {
+  //
+  // ─── COMMON ─────────────────────────────────────────────────────────────────────
+  //
+  const common = {
     context: path.resolve(__dirname, 'src'),
     entry: {
       app: ['./index.ts', './index.scss'],
@@ -30,6 +33,7 @@ module.exports = env => {
       contentBase: 'public',
       historyApiFallback: true,
       noInfo: true,
+      hot: true,
     },
     module: {
       rules: [
@@ -52,7 +56,9 @@ module.exports = env => {
         },
       ],
     },
-    plugins: compact([
+    plugins: [
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NamedModulesPlugin(),
       new NotifierPlugin({ title: 'Webpack' }),
       new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify(NODE_ENV),
@@ -66,20 +72,33 @@ module.exports = env => {
       }),
       new ExtractTextPlugin({
         filename: '[name].bundle.css',
+        disable: !isProd,
       }),
-      isProd && new webpack.optimize.ModuleConcatenationPlugin(),
-      isProd && new MinifyPlugin(),
-    ]),
+    ],
     resolve: {
       extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
       alias: {
         // ...rxPaths(),
-        react: 'preact-compat',
-        'react-dom': 'preact-compat',
         '@': path.resolve(__dirname, 'src'),
       },
     },
-    devtool: isProd ? false : 'inline-source-map',
+    devtool: 'inline-source-map',
   }
+
+  //
+  // ─── PROD ───────────────────────────────────────────────────────────────────────
+  //
+  const prod = merge.strategy({
+    plugins: 'append',
+    devtool: 'replace',
+  })(common, {
+    plugins: [
+      new webpack.optimize.ModuleConcatenationPlugin(),
+      new MinifyPlugin(),
+    ],
+    devtool: false,
+  })
+
+  return isProd ? prod : common
 }
 
