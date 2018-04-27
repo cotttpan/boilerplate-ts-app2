@@ -1,7 +1,6 @@
 {
   "compilerOptions": {
     "jsx": "react",
-    "jsxFactory": "h",
     "module": "commonjs",
     "moduleResolution": "node",
     "target": "es6",

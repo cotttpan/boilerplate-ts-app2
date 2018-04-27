@@ -5,7 +5,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const autoprefixer = require('autoprefixer')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-// const rxPaths = require('rxjs/_esm5/path-mapping')
 
 const NODE_ENV = process.env.NODE_ENV || 'development'
 const isProd = (NODE_ENV === 'production')
@@ -58,7 +57,6 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     alias: {
-      // ...rxPaths(),
       '@': path.resolve(__dirname, 'src'),
     },
   },
