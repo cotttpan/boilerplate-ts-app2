@@ -10,8 +10,16 @@
     "typings": false,
     "**/*.d.ts": false
   },
+  // prettier-vscode
+  // https://github.com/prettier/prettier-vscode
+  "prettier.eslintIntegration": true,
+  "prettier.tslintIntegration": true,
   "prettier.stylelintIntegration": true,
-  "prettier.disableLanguages": ["typescript", "typescriptreact", "javascript"],
+  "prettier.requireConfig": true,
+  // disable editor format for prettier
+  "typescript.format.enable": false,
+  "javascript.format.enable": false,
+
   "code-runner.executorMap": {
     "typescript": "ts-node -r tsconfig-paths/register"
   }
