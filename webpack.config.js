@@ -9,6 +9,8 @@ const autoprefixer = require('autoprefixer')
 const NODE_ENV = process.env.NODE_ENV || 'development'
 const isProd = (NODE_ENV === 'production')
 
+console.log('NODE_ENV:', NODE_ENV) // tslint:disable-line
+
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: {
@@ -23,7 +25,7 @@ module.exports = {
       {
         test: /\.(jsx?|tsx?)$/,
         exclude: /(\/node_modules\/|\.test\.tsx?$)/,
-        loader: 'awesome-typescript-loader?module=es2015',
+        loader: 'awesome-typescript-loader?module=esnext',
       },
       {
         test: /\.(css|scss|sass)$/,
