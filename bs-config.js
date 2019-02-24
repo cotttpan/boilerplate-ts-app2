@@ -1,4 +1,3 @@
-
 /*
  |--------------------------------------------------------------------------
  | Browser-sync config file
@@ -20,9 +19,7 @@ module.exports = {
     },
   },
   files: false,
-  watchEvents: [
-    'change',
-  ],
+  watchEvents: ['change'],
   watchOptions: {
     ignoreInitial: true,
   },

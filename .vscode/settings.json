@@ -1,7 +1,6 @@
 {
   "javascript.validate.enable": true,
   "typescript.tsdk": "./node_modules/typescript/lib",
-  "tslint.exclude": ["**/public/**", "**/node_modules/**"],
   "files.exclude": {
     ".awcache": true,
     "**/dist/**": false,
@@ -13,7 +12,6 @@
   // prettier-vscode
   // https://github.com/prettier/prettier-vscode
   "prettier.eslintIntegration": true,
-  "prettier.tslintIntegration": true,
   "prettier.stylelintIntegration": true,
   "prettier.requireConfig": true,
   // disable editor format for prettier

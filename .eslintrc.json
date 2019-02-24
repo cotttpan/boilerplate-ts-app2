@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "eslint-config-nullabletypo",
+    "eslint-config-nullabletypo/+typescript"
+  ],
+  "ecmaFeatures": {
+    "modules": true
+  },
+  "env": {
+    "node": true,
+    "browser": true
+  }
+}

@@ -1,13 +1,13 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require('path')
 const webpack = require('webpack')
 const NotifierPlugin = require('webpack-notifier')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
-const autoprefixer = require('autoprefixer')
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 const NODE_ENV = process.env.NODE_ENV || 'development'
-const isProd = (NODE_ENV === 'production')
+const isProd = NODE_ENV === 'production'
 
 console.log('NODE_ENV:', NODE_ENV) // tslint:disable-line
 
